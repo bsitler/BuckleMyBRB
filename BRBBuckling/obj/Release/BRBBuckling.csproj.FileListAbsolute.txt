@@ -1,0 +1,10 @@
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\BRBBuckling-AddIn.dna
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\BRBBuckling.dll
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\BRBBuckling.pdb
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\ExcelDna.IntelliSense.dll
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\ExcelDna.Registration.dll
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\MathNet.Numerics.dll
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\bin\Release\MathNet.Numerics.xml
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\obj\Release\BRBBuckling.csprojResolveAssemblyReference.cache
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\obj\Release\BRBBuckling.dll
+F:\Dropbox\Git\BuckleMyBRB\BRBBuckling\obj\Release\BRBBuckling.pdb
