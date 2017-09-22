@@ -552,7 +552,7 @@ public static class BRBBucklingFunctions
         double mode = Check<double>(_mode, 1);
         double max = Check<double>(_max, 2);
 
-        return ElasticBuckling.ke_crit(N => ElasticBuckling.det_sym_connection(N, κg, κr, ξ, γ), mode, tol, max);
+        return ElasticBuckling.ke_crit(N => ElasticBuckling.det_sym_rigidrest(N, κg, κr, ξ, γ), mode, tol, max);
     }
 
     [ExcelFunction(Description = @"Anti-Symmetric mode effective length factor
@@ -574,6 +574,6 @@ public static class BRBBucklingFunctions
         double mode = Check<double>(_mode, 1);
         double max = Check<double>(_max, 2);
 
-        return ElasticBuckling.ke_crit(N => ElasticBuckling.det_asym_connection(N, κg, κr, ξ, γ), mode, tol, max);
+        return ElasticBuckling.ke_crit(N => ElasticBuckling.det_asym_rigidrest(N, κg, κr, ξ, γ), mode, tol, max);
     }
 }

@@ -109,7 +109,7 @@ internal static class ElasticBuckling
     }
 
 
-    internal static double det_sym_connection(double N, double κg, double κr, double ξ, double γ)
+    internal static double det_sym_rigidrest(double N, double κg, double κr, double ξ, double γ)
     {
         if (N < 0 || γ <= 0 || ξ <= 0 || (κg <= 0 && κr <= 0)) return 0;
         double S1 = Sin(Sqrt(N) * PI);
@@ -117,11 +117,11 @@ internal static class ElasticBuckling
         double n = PI * Sqrt(N);
 
         // combined spring including restrainer stiffness
-        κr = 1 / (1 / κr + γ*(1 - 2 * ξ) / 2/ ξ);
+        κr = 1.0 / (1 / κr + γ*(1 - 2 * ξ) / 2/ ξ);
 
         return κg * (n * C1 + κr * S1) - n * (n * S1 - κr * C1);
     }
-    internal static double det_asym_connection(double N, double κg, double κr, double ξ, double γ)
+    internal static double det_asym_rigidrest(double N, double κg, double κr, double ξ, double γ)
     {
         if (N < 0 || γ <= 0 || ξ <= 0 || (κg <= 0 && κr <= 0)) return 0;
         double S1 = Sin(Sqrt(N) * PI);
@@ -129,13 +129,24 @@ internal static class ElasticBuckling
         double n = PI * Sqrt(N);
 
         // combined spring including restrainer stiffness
-        κr =  1 / (1 / κr + γ*(1 - 2 * ξ) / 6/ ξ);
-        double κtr = 24 * Pow(ξ, 3) / γ / Pow(1 - 2 * ξ, 3);
-            
+        κr =  1.0 / (1 / κr + γ*(1 - 2 * ξ) / 6/ ξ);
+        //double κtr = 24 * Pow(ξ, 3) / γ / Pow(1 - 2 * ξ, 3);
+
+        //var M = linalg.Double.DenseMatrix.OfArray(new double[,] {
+        //    { κg,            n,            κg/n            },
+        //    { κtr*S1,        κtr*(C1-1),    κtr-Pow(n,2)    },
+        //    { n*S1-κr*C1,    n*C1+κr*S1,    -κr/n            }});
+        //var M = linalg.Double.DenseMatrix.OfArray(new double[,] {
+        //    { κg,           n,          κg/n              },
+        //    { n*S1-2*κr*C1,   n*C1+2*κr*S1, 0               },
+        //    { 2*ξ*(S1+n*C1-1)-n*C1, 2*ξ*(C1-n*S1)+n*S1,0   }});
         var M = linalg.Double.DenseMatrix.OfArray(new double[,] {
-            { κg,            n,            κg/n            },
-            { κtr*S1,        κtr*(C1-1),    κtr-Pow(n,2)    },
-            { n*S1-κr*C1,    n*C1+κr*S1,    -κr/n            }});
+            { 0,1,0,1,0,0 },
+            { κg,n,κg/n,0,0,0},
+            {S1,C1,1,1,-1,-1 },
+            {0,0,1,0,-1,0},
+            {n*S1-κr*C1,n*C1+κr*S1,-κr/n,0,κr/n,0},
+            {0,0,0,0,1.0/2/ξ,1}});
 
         return M.Determinant();
     }

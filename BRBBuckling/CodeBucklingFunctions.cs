@@ -131,7 +131,7 @@ public static class CodeBucklingFunctions
             default: return double.NaN;
         }
 
-        return α * PI * r_c;
+        return α / PI*Sqrt(fy/E) * r_c;
     }
 
     [ExcelFunction(Description = @"NZS3404 6.2 Perry Robertson/SSRC inelastic col. buckling

@@ -94,7 +94,7 @@ namespace BRBBuckling
             {
                 p6 = colFlange.Intersect(colEdge);
                 p4 = p6.Move(p6.DistanceTo(p1a) * horizStiffenerPerc,
-                     PI / 2 - horizTaperAngle);
+                     horizTaperAngle);
             }
             // beam edge control points
             Point p1b = p1.Move(W2, θ - PI / 2);
